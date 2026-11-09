@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Learning Hub</title>
+<style>
+:root{--bg:#fafaf7;--fg:#1d1d1b;--mut:#6b6b66;--card:#fff;--line:#e3e2dc;--acc:#2f6f5e;--acc2:#e8f1ee;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#141413;--fg:#ecebe6;--mut:#9a9992;--card:#1e1e1c;--line:#34332f;--acc:#6fc2a9;--acc2:#1f2e29;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#141413;--fg:#ecebe6;--mut:#9a9992;--card:#1e1e1c;--line:#34332f;--acc:#6fc2a9;--acc2:#1f2e29;color-scheme:dark}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 Georgia,'Times New Roman',serif}
+main{max-width:720px;margin:0 auto;padding:20px 16px 60px}
+h1,h2,h3,button,select,input,textarea,.sans{font-family:system-ui,-apple-system,'Segoe UI',sans-serif}
+h1{font-size:1.7rem;margin:.2em 0}h2{font-size:1.15rem;margin:0 0 .4em}h3{font-size:1rem;margin:1.2em 0 .3em}
+.mut{color:var(--mut);font-size:.9rem}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:12px 0}
+a{color:var(--acc)}
+.grid{display:grid;gap:10px}
+.topic{display:block;text-decoration:none;color:inherit}
+.bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden;margin-top:8px}
+.bar i{display:block;height:100%;background:var(--acc)}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+select,input,textarea,button{font-size:1rem;padding:9px 10px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--fg);width:100%}
+button{background:var(--acc);color:var(--bg);border:0;font-weight:600;cursor:pointer}
+button.ghost{background:none;color:var(--acc);border:1px solid var(--line);width:auto}
+.stats{display:flex;gap:10px}.stats div{flex:1;text-align:center}.stats b{font-size:1.5rem;display:block;font-family:system-ui,sans-serif}
+.fig{border:1.5px dashed var(--line);border-radius:10px;padding:18px;text-align:center;margin:14px 0;font-size:.88rem;color:var(--mut)}
+label.chk{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:1px solid var(--line);font-family:system-ui,sans-serif;font-size:.95rem}
+label.chk input{width:auto;margin-top:4px}
+.note{border-left:3px solid var(--acc);padding:4px 10px;margin:8px 0;font-size:.92rem}
+.tag{display:inline-block;background:var(--acc2);color:var(--acc);border-radius:20px;padding:1px 10px;font-size:.78rem;font-family:system-ui,sans-serif}
+.draft{background:var(--acc2);border-radius:10px;padding:10px 14px;font-size:.88rem;font-family:system-ui,sans-serif}
+:root:root:root{--bg:#09090b;--fg:#dfe4ea;--mut:#8b93a0;--card:#121216;--line:#26272d;--acc:#e10600;--acc2:#220b0c;--ice:#eef2f6;--lnk:#ff4d45;color-scheme:dark}
+body{background:radial-gradient(900px 420px at 50% -140px,#1c1d24,transparent) no-repeat,var(--bg)}
+main{border-top:3px solid var(--acc)}
+h1{text-transform:uppercase;letter-spacing:.05em;font-weight:800;color:var(--ice)}
+h1::after{content:"";display:block;width:56px;height:3px;background:var(--acc);margin-top:8px}
+h3{color:var(--ice);border-left:3px solid var(--acc);padding-left:9px}
+a{color:var(--lnk)}a:hover{color:var(--ice)}
+button{color:#fff;letter-spacing:.04em;text-transform:uppercase}
+.topic:hover{border-color:var(--acc)}.tag{color:var(--lnk)}.stats b{color:var(--ice)}.fig{border-color:#3a3b42}.draft{border:1px solid #3a1416;color:var(--fg)}
+input[type=checkbox]{accent-color:#e10600}
+.pic{margin:14px 0}.pic img{display:block;width:100%;max-height:380px;object-fit:contain;background:#eef2f6;border-radius:10px}.pic figcaption{font-size:.8rem;color:var(--mut);margin-top:6px;font-family:system-ui,sans-serif}
+
+:root:root:root{--bg:#050507;--fg:#e6eaf0;--mut:#9aa3b0;--line:rgba(255,255,255,.13);--acc:#e10600;--ice:#f3f6fa;--lnk:#ff5a52;color-scheme:dark}
+html{background:#050507}
+body{background:radial-gradient(520px 380px at 10% -40px,rgba(225,6,0,.40),transparent 70%) fixed,radial-gradient(640px 460px at 95% 20%,rgba(190,205,225,.20),transparent 70%) fixed,radial-gradient(700px 520px at 35% 105%,rgba(225,6,0,.24),transparent 70%) fixed,#050507}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:19;background:rgba(5,5,7,.55);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px)}
+main{border-top:0;padding-top:8px}
+.card,.draft,.pic,.nav{position:relative;background:linear-gradient(135deg,rgba(255,255,255,.12),rgba(255,255,255,.035) 45%,rgba(255,255,255,.07));-webkit-backdrop-filter:blur(22px) saturate(170%);backdrop-filter:blur(22px) saturate(170%);border:1px solid rgba(255,255,255,.15);border-radius:24px;box-shadow:inset 0 1px 0 rgba(255,255,255,.30),inset 0 -1px 0 rgba(255,255,255,.05),0 14px 40px rgba(0,0,0,.55)}
+.card::before,.nav::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:radial-gradient(120% 60% at 20% -10%,rgba(255,255,255,.16),transparent 55%)}
+.draft{border-radius:16px}
+.nav{position:sticky;top:calc(env(safe-area-inset-top,0px) + 8px);z-index:20;display:flex;align-items:center;gap:12px;max-width:704px;margin:8px auto 0;padding:8px 10px 8px 16px;border-radius:999px}
+.brand{font:800 .78rem system-ui,sans-serif;letter-spacing:.18em;color:var(--ice);text-decoration:none;white-space:nowrap}.brand b{color:#ff3b30}
+#chips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;position:relative}#chips::-webkit-scrollbar{display:none}
+.chip{white-space:nowrap;padding:7px 13px;border-radius:999px;font:600 .78rem system-ui,sans-serif;color:var(--fg);text-decoration:none;border:1px solid transparent}
+.chip[aria-current]{background:rgba(225,6,0,.25);border-color:rgba(255,90,80,.55);color:#fff;box-shadow:0 0 16px rgba(225,6,0,.35)}
+h1{background:linear-gradient(180deg,#fff,#a9b3c1);-webkit-background-clip:text;background-clip:text;color:transparent;font-size:2rem}
+.topic{transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s,border-color .25s}
+.topic:hover{transform:translateY(-3px);border-color:rgba(255,90,80,.6);box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 18px 44px rgba(0,0,0,.6),0 0 28px rgba(225,6,0,.25)}
+.topic:active{transform:scale(.985)}
+button{background:linear-gradient(180deg,rgba(255,80,68,.96),rgba(185,5,0,.94));border:1px solid rgba(255,255,255,.3);border-radius:16px;box-shadow:inset 0 1px 0 rgba(255,255,255,.45),0 8px 24px rgba(225,6,0,.38);transition:transform .15s}
+button:active{transform:scale(.97)}
+select,input:not([type=checkbox]),textarea{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);border-radius:14px;color:var(--ice);box-shadow:inset 0 1px 2px rgba(0,0,0,.5)}
+select:focus,textarea:focus,input:focus{outline:2px solid rgba(225,6,0,.7);outline-offset:1px}option{background:#111116;color:#eee}
+.bar{height:8px;background:rgba(255,255,255,.09);border-radius:8px;box-shadow:inset 0 1px 2px rgba(0,0,0,.6)}
+.bar i{background:linear-gradient(90deg,#8a0500,#ff3b30);border-radius:8px;box-shadow:0 0 12px rgba(255,59,48,.6)}
+.stats b{color:#fff;text-shadow:0 0 18px rgba(225,6,0,.75)}
+label.chk{border-bottom-color:rgba(255,255,255,.08)}
+.note{background:rgba(255,255,255,.05);border-left:3px solid var(--acc);border-radius:0 14px 14px 0;padding:8px 12px}
+.tag{background:rgba(225,6,0,.22);border:1px solid rgba(255,90,80,.4);color:#ffd9d6}
+.pic{padding:8px;margin:16px 0}.pic img{border-radius:16px;background:#eef2f6}.pic figcaption{padding:2px 6px 4px}
+.fig{background:rgba(255,255,255,.04);border:1.5px dashed rgba(255,255,255,.2);border-radius:18px}
+@supports not (backdrop-filter:blur(1px)){.card,.draft,.pic,.nav{background:rgba(22,22,26,.94)}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style></head><body><header class="nav"><a class="brand" href="#">LEARNING<b>HUB</b></a><nav id="chips"></nav></header><main id="app"></main>
+<script>
+const T=[
+{id:"neuroplasticity",n:"Neuroplasticity",q:"neuroplasticity brain",
+s:"Neuroplasticity is the brain’s ability to change its neural networks through growth and reorganization.",
+sec:[["What it is","Wikipedia describes it as the capacity of neural networks to change through growth and reorganization, from forming new connections to larger shifts like cortical remapping. Triggers include learning, practice, stress and brain injury."],
+["A short history","William James floated the idea in 1890 in The Principles of Psychology, though it was largely ignored for decades. Donald Hebb’s 1949 book The Organization of Behavior gave the idea a mechanism now called Hebbian learning: connections strengthen when neurons are active together."],
+["Why it matters for learning","Practice reshapes circuits, which is why deliberate repetition builds skill and why rehabilitation after injury can work. Be careful with popular claims, though: researchers note the term is stretched to cover many different things."],
+["Structural vs functional plasticity","Structural plasticity is physical change: synapses strengthen or weaken, new connections form, and the brain’s microscopic wiring is remodelled. Functional plasticity is a change in what a region does, for example when nearby areas take over a task after damage. Most real learning involves both. Functional changes can be quick, while structural ones usually take longer."],
+["Evidence you can look up","Michael Merzenich’s work on cortical maps showed that the brain’s representation of the body can shift with experience. A well-known human study (Maguire and colleagues, 2000) found that London taxi drivers had a larger posterior hippocampus than control participants, with the size related to years on the job. Both are good starting points for the primary literature."],
+["Critical periods and the adult brain","Early life has critical periods in which experience shapes circuits strongly. Hubel and Wiesel’s visual cortex experiments are the classic case. The adult brain stays plastic, but change usually needs more effort, repetition and attention than in childhood."],
+["Habits that support plasticity","Research on learning supports spaced practice, progressive challenge, quick feedback and enough sleep, since sleep helps consolidate what you practised. Treat claims that one trick or app ‘rewires’ your brain with caution, and ask what evidence supports them."],
+["Long-term potentiation","Long-term potentiation (LTP) is a lasting strengthening of a synapse after repeated stimulation, and it is the best-studied cellular model of learning and memory. Its counterpart, long-term depression (LTD), weakens synapses. Together they let circuits tune themselves with experience. LTP was first described in the hippocampus, a region important for forming new memories, by Bliss and Lømo in 1973."],
+["When plasticity hurts","Plasticity is not always helpful. Writers such as Norman Doidge separate changes with positive consequences from those with negative ones. Phantom limb sensations after amputation have long been linked to cortical reorganisation, and chronic pain can involve changes that amplify pain signals. The same mechanism that builds skill can also entrench unhelpful habits."]],
+qs:["What is the difference between structural and functional plasticity?","What mechanism did Hebb propose, and who suggested the broad idea earlier?","Give one example where plasticity is harmful rather than helpful."],
+src:[["Wikipedia: Neuroplasticity","https://en.wikipedia.org/wiki/Neuroplasticity"],["MIT Open Encyclopedia of Cognitive Science: Neuroplasticity","https://oecs.mit.edu/pub/t5j0qv3d"],["Wikipedia: Hebbian theory","https://en.wikipedia.org/wiki/Hebbian_theory"],["Wikipedia: Long-term potentiation","https://en.wikipedia.org/wiki/Long-term_potentiation"],["Mind Hacks: “Neuroplasticity is a dirty word”","https://mindhacks.com/2010/06/07/neuroplasticity-is-a-dirty-word"]]},
+{id:"pattern-recognition",n:"Pattern recognition",q:"pattern recognition",
+s:"Pattern recognition is spotting regularities in data, whether done by a brain or by an algorithm.",
+sec:[["In humans","Experts often see meaningful structure where novices see clutter. The classic example is chess: masters remember real game positions far better than random ones because they chunk pieces into familiar patterns (Chase and Simon, 1973)."],
+["In machines","Machine learning systems learn to classify inputs such as images, speech or text by finding statistical regularities in examples. The same core idea, matching new input to learned structure, underlies both."],
+["The failure mode","Apophenia is seeing patterns in randomness. Knowing when a pattern is real, and when it is noise, is as important as spotting it."],
+["Supervised and unsupervised learning","In supervised learning a system is shown labelled examples (this is a cat, that is a dog) and learns to classify new ones. In unsupervised learning it gets no labels and groups similar items by itself, which is called clustering. People do both: a child is told names for things but also notices groups unprompted."],
+["How vision builds patterns","Visual processing is often described as a hierarchy. Early stages respond to simple features like edges, work associated with Hubel and Wiesel, and later stages combine them into shapes, objects and faces. Many modern image-recognition networks use a similar layered design."],
+["Gestalt principles","Gestalt psychologists described rules the mind uses to group elements: proximity, similarity, closure and continuity. Dots placed close together are seen as one group, and a broken circle is still seen as a circle. These rules explain why a layout feels organised or messy."],
+["Memory limits and chunking","George Miller’s 1956 paper popularised the idea that short-term memory holds about seven items, and later work by Nelson Cowan suggested the real limit is closer to four chunks. Chunking gets around the limit by packing information into meaningful units, which is how experts handle complexity."],
+["Pitfalls","Confirmation bias makes us notice patterns that fit our beliefs, and small samples produce convincing but false trends. Good pattern thinking asks how many cases you have, what would disprove the pattern, and whether chance could explain it."],
+["Three accounts of recognition","Textbooks often describe three accounts. Template matching compares input to a stored copy, which is fragile when the input varies. Feature analysis breaks input into parts such as lines and curves. Prototype matching compares input to an average, best-fit example. Real recognition probably blends all three."],
+["Overfitting in machines","A machine learning pipeline extracts features, trains a classifier, then tests it on unseen data. The main danger is overfitting, where the model memorises its training examples and fails on new ones. Splitting data into training and test sets is the standard way to detect it, and the same lesson applies to people who over-trust patterns from a few cases."]],
+qs:["What is chunking and why do experts benefit from it?","What is apophenia?","Why do machine learning models need separate test data?"],
+src:[["Wikipedia: Pattern recognition","https://en.wikipedia.org/wiki/Pattern_recognition"],["Wikipedia: Chunking (psychology)","https://en.wikipedia.org/wiki/Chunking_(psychology)"],["Wikipedia: Overfitting","https://en.wikipedia.org/wiki/Overfitting"],["Wikipedia: Apophenia","https://en.wikipedia.org/wiki/Apophenia"],["Wikipedia: Gestalt psychology","https://en.wikipedia.org/wiki/Gestalt_psychology"],["Wikipedia: The Magical Number Seven, Plus or Minus Two","https://en.wikipedia.org/wiki/The_Magical_Number_Seven,_Plus_or_Minus_Two"]]},
+{id:"game-theory",n:"Game theory",q:"game theory",
+s:"Game theory studies how interacting choices of decision-makers produce outcomes, some of which nobody intended.",
+sec:[["Core idea","The Stanford Encyclopedia of Philosophy frames it as the study of how interacting choices of economic agents produce outcomes relative to their preferences, including outcomes none of them intended. Non-cooperative game theory looks at individual rational choice under strategic interaction."],
+["Origins and reach","The field took shape with von Neumann and Morgenstern’s 1944 book Theory of Games and Economic Behavior. It spread to economics, political science, computer science and, from the 1970s, biology."],
+["Classic examples and limits","Study the prisoner’s dilemma and the Nash equilibrium first. Thomas Schelling cautioned that assuming perfectly rational behavior is powerful for building theory but may not match real behavior."],
+["Building blocks","A game has players, the strategies each can choose, and payoffs for each combination of choices. A payoff matrix lays this out for simultaneous moves, while a game tree shows sequential moves. Games can be zero-sum, where one side’s gain is the other’s loss, or non-zero-sum, where everyone can gain or lose together."],
+["The prisoner’s dilemma","Two suspects are questioned separately. Whatever the other does, each does better by betraying, yet if both betray they end up worse off than if both stay silent. It shows how individually rational choices can produce a collectively bad result, and it models arms races, price wars and shared-resource problems."],
+["Repeated games","When the same game is played again and again, cooperation can become rational because reputation and future rounds matter. In Robert Axelrod’s computer tournaments in the early 1980s, the simple strategy tit-for-tat, which cooperates first and then copies the opponent’s last move, scored very well."],
+["Nash equilibrium","A Nash equilibrium is a set of strategies where no player can do better by changing only their own choice. John Nash formalised it in 1950, and he shared the 1994 Nobel Memorial Prize in Economics with John Harsanyi and Reinhard Selten. An equilibrium predicts a stable outcome, not necessarily a good one."],
+["More games to learn","The stag hunt is a trust problem where cooperation pays most but is risky. Hawk-dove, also called chicken, is a conflict game where both sides fighting is the worst result, and John Maynard Smith used it in evolutionary biology. Coordination games are those where players just want to match, such as choosing which side of the road to drive on."],
+["Cooperative game theory","Cooperative game theory studies how groups form coalitions and share gains when agreements can be enforced. The Shapley value, developed by Lloyd Shapley, is a standard way to divide the gains according to each member’s contribution. It contrasts with the non-cooperative approach, which models each player’s individual choices."],
+["Evolutionary game theory","John Maynard Smith and George Price introduced the evolutionarily stable strategy (ESS) in 1973: a strategy that, once common in a population, cannot be displaced by a rare mutant. Here strategies are inherited traits and payoffs are reproductive success, not conscious choices."],
+["Where the models fail","In the ultimatum game, people often reject unfair offers even though rejecting costs them money, which simple self-interest models do not predict. Behavioural game theory adds fairness, trust and limited reasoning to explain such results."]],
+qs:["What are the three elements of any game?","Why can the prisoner’s dilemma end badly for both players?","What does a Nash equilibrium tell you, and what does it not tell you?"],
+src:[["Stanford Encyclopedia of Philosophy: Game Theory","https://plato.stanford.edu/entries/game-theory/"],["SEP: Epistemic Foundations of Game Theory","https://plato.stanford.edu/entries/epistemic-game/"],["Wikipedia: Game theory","https://en.wikipedia.org/wiki/Game_theory"],["Wikipedia: Prisoner’s dilemma","https://en.wikipedia.org/wiki/Prisoner%27s_dilemma"],["Wikipedia: Nash equilibrium","https://en.wikipedia.org/wiki/Nash_equilibrium"],["Wikipedia: Evolutionarily stable strategy","https://en.wikipedia.org/wiki/Evolutionarily_stable_strategy"],["Wikipedia: Ultimatum game","https://en.wikipedia.org/wiki/Ultimatum_game"],["Wikipedia: Shapley value","https://en.wikipedia.org/wiki/Shapley_value"]]},
+{id:"obsession",n:"Obsession",q:"obsession focus",
+s:"Obsession can mean a clinical condition or a deep, driving passion. The difference matters.",
+sec:[["Two meanings","In clinical psychology, obsessions are intrusive, unwanted thoughts, central to obsessive-compulsive disorder (OCD). In everyday talk, “obsession” means intense devotion to a pursuit. This module is about the second meaning; for the first, read the NIMH page."],
+["Harmonious vs obsessive passion","Vallerand’s dualistic model of passion separates harmonious passion, which fits with the rest of life, from obsessive passion, which can feel like a compulsion and crowd out other areas. Search the model in Google Scholar and read the original papers."],
+["Using it well","Deep focus drives mastery, and the flow state is one reason. A useful self-check is whether the pursuit still leaves room for sleep, people and other goals."],
+["The clinical side","OCD involves obsessions, which are unwanted recurring thoughts, images or urges, and compulsions, which are repetitive behaviours or mental acts done to reduce distress. NIMH notes these take up significant time and interfere with daily life, and that effective treatments exist, including specific kinds of talk therapy and medication. If this sounds like you, a doctor or mental health professional is the right next step."],
+["Flow","Mihaly Csikszentmihalyi described flow as total absorption in a task, helped by clear goals, quick feedback and a match between challenge and skill. Flow is a state, not a trait, and it is usually a sign of engaged work rather than a problem."],
+["Deliberate practice","Anders Ericsson studied how experts improve and found the best practice is focused, aimed at specific weaknesses, just beyond current ability, and paired with feedback. The popular ‘10,000 hours’ rule oversimplifies his work. The quality of practice matters more than a fixed number of hours."],
+["Healthy or unhealthy?","Researchers describe obsessive passion as an urge that feels hard to control and can conflict with other parts of life, while harmonious passion is freely chosen. Useful questions: can I stop when I need to, does this crowd out sleep, health and relationships, and does my mood depend on it?"],
+["Practice as evidence","In a well-known 1993 study of violinists at a Berlin music academy, Ericsson and colleagues found the top performers had accumulated more solo deliberate practice than less accomplished peers. It supports the idea that sustained, structured effort drives expertise, though talent, teaching and opportunity also play roles."],
+["Why pursuits feel compelling","The brain’s reward system, in which dopamine plays a central role, tracks the gap between the reward you expected and the one you got. Frequent, visible progress and feedback therefore make a pursuit feel pulling, which is part of why games, training and creative work can absorb people."],
+["Keeping it healthy","Practical safeguards: set a time boundary, protect sleep, keep one non-negotiable exercise or social habit, and review progress weekly against a measurable goal. These are suggestions, not clinical advice."]],
+qs:["What separates clinical obsessions from everyday obsession with a goal?","What conditions help a person reach flow?","Name two signs that a passion has become unhealthy."],
+src:[["NIMH: Obsessive-Compulsive Disorder","https://www.nimh.nih.gov/health/topics/obsessive-compulsive-disorder-ocd"],["Wikipedia: Flow (psychology)","https://en.wikipedia.org/wiki/Flow_(psychology)"],["Wikipedia: Reward system","https://en.wikipedia.org/wiki/Reward_system"],["Google Scholar: Vallerand dualistic model of passion","https://scholar.google.com/scholar?q=Vallerand+dualistic+model+of+passion"]]},
+{id:"non-linear-careers",n:"Non-linear careers",q:"career path",
+s:"Non-linear careers move sideways, pivot, and combine fields instead of climbing one ladder.",
+sec:[["What it means","A non-linear career zigzags between roles, industries or kinds of work, sometimes running several lines at once, as in a portfolio career."],
+["Why it can work","Herminia Ibarra’s Working Identity (2003) argues that people change careers by trying things and learning from them, rather than planning first and acting later. John Krumboltz’s planned happenstance theory similarly treats chance events as something to prepare for."],
+["Making it coherent","Look for the thread: skills that transfer, a theme you keep returning to, and a record of experiments and what each taught you."],
+["Older and newer career models","The traditional model is a ladder within one organisation. Douglas Hall’s protean career (1976) describes a career steered by the person’s own values rather than an employer’s, and Arthur and Rousseau’s boundaryless career (1996) describes movement across employers and fields. Both help explain non-linear paths."],
+["Generalists and specialists","David Epstein’s book Range (2019) argues that breadth helps people adapt and connect ideas across fields. Critics note that deep specialisation is essential in some domains, so the right balance depends on how predictable your field is."],
+["T-shaped skills","A T-shaped person has deep expertise in one area (the vertical bar) and working knowledge across others (the horizontal bar). The idea is popular in design and tech, and it is a practical way to make a varied path valuable."],
+["Practical moves","Run small experiments instead of leaping: a side project, a short course, a conversation with someone in the field. Keep a log of what energised you and what drained you, build visible proof of work, and keep enough financial runway to survive a transition."],
+["Risks and how to manage them","Non-linear paths can mean uneven income, slower seniority and awkward questions about your story. Offset them with savings, a clear narrative connecting your moves, and skills that transfer between roles."],
+["Transferable skills vs domain knowledge","Skills such as writing, analysis, selling and project management move between jobs, while domain knowledge, such as an industry’s rules, transfers less. When pivoting, list which of your skills are portable and which you will need to relearn."],
+["Possible selves and your story","Ibarra describes changing careers as also changing the story you tell about yourself. People try on possible selves through experiments, see what fits, and revise their story. A coherent narrative helps others understand why a varied path makes sense."],
+["Evaluating an experiment","After each experiment, ask what you learned about the work, about your strengths, and about the people. Keep the ones that raise energy and teach you something, and drop the rest without guilt."]],
+qs:["How does a protean career differ from a boundaryless one?","What is a T-shaped skill profile?","What is one small experiment you could run this month, and what would it teach you?"],
+src:[["Wikipedia: Portfolio career","https://en.wikipedia.org/wiki/Portfolio_career"],["Wikipedia: T-shaped skills","https://en.wikipedia.org/wiki/T-shaped_skills"],["Google Scholar: Ibarra, Working Identity","https://scholar.google.com/scholar?q=Ibarra+Working+Identity"],["Google Scholar: Krumboltz planned happenstance","https://scholar.google.com/scholar?q=Krumboltz+planned+happenstance"]]}
+];
+const K="learnhub-v1";let S={done:{},log:[]};
+try{S=Object.assign(S,JSON.parse(localStorage.getItem(K)||"{}"))}catch(e){}
+const save=()=>{try{localStorage.setItem(K,JSON.stringify(S))}catch(e){}};
+const today=()=>{const d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")};
+const items=t=>t.sec.length+2;
+const prog=t=>Math.round(100*(S.done[t.id]||[]).length/items(t));
+function streak(){const ds=new Set(S.log.map(l=>l.d));let c=0,d=new Date();if(!ds.has(today()))d.setDate(d.getDate()-1);
+while(true){const k=d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");if(ds.has(k)){c++;d.setDate(d.getDate()-1)}else break}return c}
+const $=s=>document.querySelector(s);
+function home(){const avg=Math.round(T.reduce((a,t)=>a+prog(t),0)/T.length);
+$("#app").innerHTML=`<p class="mut sans">Learning Hub</p><h1>Learn on purpose.</h1>
+<div class="draft">Content is summarised from the linked sources. Check claims there before relying on them.</div>
+<div class="card stats"><div><b>${streak()}</b><span class="mut">day streak</span></div><div><b>${S.log.length}</b><span class="mut">check-ins</span></div><div><b>${avg}%</b><span class="mut">overall</span></div></div>
+<div class="card"><h2>Daily check-in</h2><div class="grid">
+<select id="ct">${T.map(t=>`<option value="${t.id}">${t.n}</option>`).join("")}</select>
+<select id="cc"><option value="1">Confidence: 1 – lost</option><option value="2">2 – shaky</option><option value="3" selected>3 – okay</option><option value="4">4 – solid</option><option value="5">5 – could teach it</option></select>
+<textarea id="cn" rows="2" placeholder="One thing I learned today…"></textarea><button id="cb">Check in</button></div>
+<div id="lg"></div></div>
+<h2 class="sans">Topics</h2><div class="grid">${T.map(t=>`<a class="card topic" href="#${t.id}" style="margin:0"><b class="sans">${t.n}</b><div class="mut">${t.s}</div><div class="bar"><i style="width:${prog(t)}%"></i></div></a>`).join("")}</div>`;
+$("#cb").onclick=()=>{const n=$("#cn").value.trim();S.log.unshift({d:today(),t:$("#ct").value,c:+$("#cc").value,n});S.log=S.log.slice(0,200);save();home()};
+const lg=$("#lg");S.log.slice(0,4).forEach(l=>{const t=T.find(x=>x.id===l.t),d=document.createElement("div");d.className="note";d.innerHTML=`<span class="tag"></span> <span class="mut"></span><div class="nt"></div>`;
+d.querySelector(".tag").textContent=t?t.n:l.t;d.querySelector(".mut").textContent=l.d+" · confidence "+l.c;d.querySelector(".nt").textContent=l.n;lg.appendChild(d)})}
+const IMG={
+"neuroplasticity":{f:"Blausen_0657_MultipolarNeuron.png",t:"Multipolar neuron",a:"Bruce Blaus",l:"CC BY 3.0"},
+"pattern-recognition":{f:"Kanizsa_triangle.svg",t:"Kanizsa triangle: the mind completes a triangle that is not drawn",a:"Fibonacci",l:"CC BY-SA 3.0"},
+"game-theory":{f:"John_Forbes_Nash,_Jr._by_Peter_Badge.jpg",t:"John Forbes Nash Jr., whose equilibrium concept is central to game theory",a:"Peter Badge / Typos1",l:"CC BY-SA 3.0"},
+"obsession":{f:"Challenge_vs_skill.svg",t:"Flow model: mental states by challenge level and skill level",a:"Oliverbeatson",l:"Public domain"}};
+function fig(t){const m=IMG[t.id];const c="https://commons.wikimedia.org/";
+if(!m)return `<div class="fig">Image slot: add a credited illustration from <a href="${c}w/index.php?search=${encodeURIComponent(t.q)}&ns6=1" target="_blank" rel="noopener">Wikimedia Commons</a></div>`;
+const pg=c+"wiki/File:"+m.f;
+return `<figure class="pic"><img loading="lazy" alt="${m.t}" src="${c}wiki/Special:FilePath/${m.f}?width=800" onerror="this.style.display='none'"><figcaption>${m.t}. By ${m.a} · ${m.l} · <a href="${pg}" target="_blank" rel="noopener">Wikimedia Commons</a></figcaption></figure>`}
+function topic(t){const dn=S.done[t.id]||[];
+const ck=[...t.sec.map(s=>"Read: "+s[0]),"Opened and skimmed the sources","Wrote a reflection in my own words"];
+$("#app").innerHTML=`<p><a href="#" class="sans">← All topics</a></p><h1>${t.n}</h1><p class="mut">${t.s}</p>
+${fig(t)}
+${t.sec.map(s=>`<h3>${s[0]}</h3><p>${s[1]}</p>`).join("")}
+${t.qs?`<h3>Self-test</h3><ol>${t.qs.map(q=>`<li>${q}</li>`).join("")}</ol>`:""}<h3>Sources</h3><ul>${t.src.map(s=>`<li><a href="${s[1]}" target="_blank" rel="noopener">${s[0]}</a></li>`).join("")}</ul>
+<div class="card"><h2>Progress: <span id="pp">${prog(t)}</span>%</h2>${ck.map((c,i)=>`<label class="chk"><input type="checkbox" data-i="${i}" ${dn.includes(i)?"checked":""}> ${c}</label>`).join("")}</div>`;
+document.querySelectorAll("input[data-i]").forEach(b=>b.onchange=()=>{const a=new Set(S.done[t.id]||[]);b.checked?a.add(+b.dataset.i):a.delete(+b.dataset.i);S.done[t.id]=[...a];save();$("#pp").textContent=prog(t)})}
+function chips(){const h=location.hash.slice(1);$("#chips").innerHTML=T.map(t=>`<a class="chip" href="#${t.id}"${h===t.id?' aria-current="page"':''}>${t.n}</a>`).join("")}
+function route(){chips();const t=T.find(x=>x.id===location.hash.slice(1));t?topic(t):home();window.scrollTo(0,0)}
+addEventListener("hashchange",route);route();
+</script></body></html>
